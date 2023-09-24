@@ -1,0 +1,82 @@
+<html>
+
+<head>
+    <style>
+        #users-div-container {
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-start;
+            align-items: center;
+            width: 100wh;
+            height: fit-content;
+        }
+
+        .div-user-card {
+            width: 80%;
+            height: fit-content;
+            padding: 5px;
+            border: 2px solid #e2e2e2;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .promoted-btn {
+            background-color: #188654;
+            font-size: large;
+            color: white;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .delete-btn {
+            background-color: #DC3444;
+            font-size: large;
+            color: white;
+            padding: 7px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .div-btn-container {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+        }
+
+        .form-btn {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div style="background-color: #8FBD8E;">
+        <h1 style="color: white; font-size: 80px;">Assignment 4</h1>
+    </div>
+    <div id="users-div-container">
+        <%for(let i=0;i<user.length;i++){%>
+            <div class="div-user-card">
+                <h3 style="color:<%=user[i].isPromoted===null?" yellow":user[i].isPromoted?"green":"red"%>;">
+                    <%=user[i].name%>
+                </h3>
+                <p style="color:<%=user[i].isPromoted===null?" yellow":user[i].isPromoted?"green":"red"%>;">
+                    <%=user[i].email%>
+                </p>
+                <div class="div-btn-container">
+                    <form class="form-btn" method="POST" action="/user/<%= user[i]._id %>?_method=PUT">
+                        <button id="edit-<%= user[i].name %>" type="submit"
+                            class="promoted-btn"><Strong>Promoted/Demoted</Strong></button>
+                    </form>
+                    <form class="form-btn" method="POST" action="/user/<%= user[i]._id %>?_method=DELETE">
+                        <button id="delete-<%= user[i].name %>" class="delete-btn"><Strong>Delete</Strong></button>
+                    </form>
+                </div>
+            </div>
+            <%}%>
+    </div>
+    <a href="/form" style="align-self: flex-start;"> Add User</a>
+    </div>
+</body>
+
+</html>

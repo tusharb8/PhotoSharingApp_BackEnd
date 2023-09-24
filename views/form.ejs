@@ -1,0 +1,49 @@
+<html>
+
+<head>
+    <style>
+        body {
+            background-color: #E6E6FA;
+        }
+
+        #form-div {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            min-height: 500px;
+            height: 100%;
+            font-size: large;
+        }
+
+        label,
+        input,
+        button {
+            display: block;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="form-div-container">
+        <h1>Form Page</h1>
+
+        <div style="display:<%=message[0]?"block":"none"%>;">
+            <p style="color: red;">Email already exists</p>
+        </div>
+        <form action="/user/add" method="POST">
+            <div id="form-div">
+                <label for="username">Username : </label>
+                <input type="text" id="username" name="username" required>
+
+                <label for="email">Email : </label>
+                <input type="email" id="email" name="email" required>
+
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+
+
+</body>
+
+</html>
